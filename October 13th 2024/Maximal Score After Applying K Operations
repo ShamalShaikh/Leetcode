@@ -1,0 +1,22 @@
+#include <cmath>
+class Solution {
+public:
+    long long maxKelements(vector<int>& a, int k) {
+        priority_queue<int, vector<int>>maxhp;
+        int n = a.size();
+        // if(n == 1 && a[0] == 1){
+        //     return (long long) k;
+        // }
+        for(int i=0;i<n;++i){
+            maxhp.push(a[i]);
+        }
+        long long sum = 0, x;
+        for(int i=0;i<k;++i){
+            x = maxhp.top(); maxhp.pop();
+            sum+=x;
+            x = ceil((double)x/3);
+            maxhp.push(x);
+        }
+        return sum;
+    }
+};
